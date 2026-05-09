@@ -1,0 +1,145 @@
+@charset "utf-8";
+
+/* ================================================================
+   以下、Builder で選択したパーツのCSS（自動連結）
+   ================================================================ */
+
+/* ---- カレンダー（ui-tools-calender1） (ui-tools-calender1) ---- */
+/*カレンダー
+---------------------------------------------------------------------------*/
+/*カレンダーブロック全体*/
+#ui-tools-calender1-parts {
+	margin-bottom: 1rem;	/*下に1文字分空ける。「定休日」と書いてある一番下のブロックとの間の余白です。*/
+}
+
+/*カレンダーテーブル*/
+.ui-tools-calender1-parts {
+	width: 100%;
+	background: #fff;
+}
+
+/*年・月を表示しているブロック*/
+.ui-tools-calender1-parts caption {
+	font-weight: bold;	/*太字*/
+	margin-bottom: 5px;	/*下に空けるスペース*/
+}
+
+/*前月、次月の矢印アイコン（Font Awesome使用。アイコン自体はjsで直接指定しています。）*/
+.ui-tools-calender1-parts caption i {
+	opacity: 0;	/*リンクがないので、透明にしておく*/
+	margin: 0 1rem;	/*上下、左右へ空けるスペース*/
+}
+
+/*前月、次月の矢印アイコンでリンクがある場合の追加設定*/
+.ui-tools-calender1-parts caption a i {
+	opacity: 1;		/*色を100%出す*/
+	color: var(--bg-inverse-color);	/*文字色。theme.cssのbg-inverse-colorを読み込みます。*/
+}
+
+/*カレンダー内のth(曜日)とtd(日付)*/
+.ui-tools-calender1-parts th, .ui-tools-calender1-parts td {
+	border: 1px solid var(--bg-border-color);	/*テーブルの枠線の幅、線種、var以降は色の指定でtheme.cssのborder-colorを読み込みます。*/
+	text-align: center;		/*テキストをセンタリング*/
+	padding: 5px;			/*ボックス内の余白*/
+}
+
+/*th(曜日)の上書き*/
+.ui-tools-calender1-parts th {
+	background: #f0f0f0;	/*背景色*/
+}
+
+/*祝日*/
+.ui-tools-calender1-parts .holiday-parts {
+	color: #FF0000;	/*文字色*/
+}
+
+/*日曜日*/
+.ui-tools-calender1-parts .sunday-parts {
+	color: #FF0000;	/*文字色*/
+}
+
+/*定休日*/
+.ui-tools-calender1-parts .store-weekly-parts {
+	background: #DDEEFF;	/*背景色*/
+}
+
+/*定休日（カレンダーブロックの外で使う場合）*/
+.ui-tools-calender1-weekly-parts {
+	background: #DDEEFF;	/*背景色*/
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid var(--bg-border-color);	/*枠線の幅、線種、var以降は色の指定でtheme.cssのborder-colorを読み込みます。*/
+	transform: translateY(0.3rem);
+	margin-right: 5px;
+}
+
+/*特別な日（特定の日に色をつけたい場合に使用します。）*/
+.ui-tools-calender1-parts .store-specific-parts {
+	background: #EEFFDD;	/*背景色*/
+}
+
+/*特別な日（カレンダーブロックの外で使う場合）*/
+.ui-tools-calender1-specific-parts {
+	background: #EEFFDD;	/*背景色*/
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid var(--bg-border-color);	/*枠線の幅、線種、var以降は色の指定でtheme.cssのborder-colorを読み込みます。*/
+	transform: translateY(0.3rem);
+	margin-right: 5px;
+}
+
+/* ---- Gridレイアウト（list-grid1） (list-grid1) ---- */
+/*list-grid1-parts（3列のGrifレイアウト）
+---------------------------------------------------------------------------*/
+.list-grid1-parts * {margin: 0;padding: 0;}
+
+/*ボックス全体*/
+.list-grid1-parts {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));	/*3列*/
+	font-size: 0.8rem;	/*文字サイズ80%*/
+}
+
+/*ボックス内のテキストブロック*/
+.list-grid1-parts .text-parts {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 2vw;	/*上下は0、左右に2%の余白をあける*/
+}
+
+/*square（正方形）画像*/
+.list-grid1-parts.square-parts figure {
+	width: 100%;
+	aspect-ratio: 1 / 1;	/*幅に対して高さを同じにする*/
+}
+.list-grid1-parts.square-parts figure img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;			/*コンテナいっぱいにカバー、余分な部分はカット*/
+	object-position: center;	/*中央部分を表示*/
+}
+
+/* ---- お知らせブロック（news2） (news2) ---- */
+/*news（お知らせ）
+---------------------------------------------------------------------------*/
+dl.news2-parts * {margin: 0;padding: 0;}
+
+/*日付*/
+dl.news2-parts dt {
+	display: flex;
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media (min-width: 900px){
+
+	dl.news2-parts {
+		display: grid;
+		grid-template-columns: max-content minmax(0, 1fr);	/*日付幅は最大の文字数幅に自動調整し、右側テキストは残り一杯使う。*/
+		gap: 0 2rem;	/*2remが、日付とテキストとの間に空けるスペース。お好みで。*/
+		align-items: start;
+	}
+
+	}/*追加指定ここまで*/

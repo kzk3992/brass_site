@@ -1,0 +1,305 @@
+/* ================================================================
+   伊那フィルハーモニック吹奏楽団 カスタムCSS
+   ベーステーマ：biz1-c2（ネイビー×オレンジ）
+   ================================================================ */
+
+/* --- ロゴテキスト --- */
+#logo-text {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+}
+#logo-text span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+}
+#logo a { text-decoration: none; }
+
+/* --- ヘッダー問い合わせボタン --- */
+.header-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #06C755;
+  color: #fff !important;
+  padding: 7px 16px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+.header-contact-btn:hover { opacity: 0.85; }
+
+/* --- ヒーローオーバーレイ --- */
+.mainimg { position: relative; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(20,30,48,0.75) 0%, rgba(20,30,48,0.3) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 5vw;
+}
+.hero-catch { color: #fff; max-width: 600px; }
+.hero-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+.hero-main {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: bold;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.hero-desc {
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  line-height: 1.9;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-btn-primary {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.hero-btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.7);
+  padding: 8px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.hero-btn-primary:hover { opacity: 0.85; }
+.hero-btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+/* --- セクションタイトル共通 --- */
+.section-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  border-left: 4px solid var(--accent-color);
+  padding-left: 0.75rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+.section-title span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: normal;
+  letter-spacing: 0.15em;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* --- 活動概要グリッド --- */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.about-card {
+  background: var(--light-color);
+  border-radius: 6px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid var(--accent-color);
+}
+.about-icon { font-size: 1.4rem; color: var(--accent-color); margin-bottom: 0.4rem; }
+.about-num { font-size: 1.6rem; font-weight: bold; color: var(--primary-color); line-height: 1.2; }
+.about-num span { font-size: 0.85rem; }
+.about-label { font-size: 0.75rem; color: #666; margin-top: 0.3rem; }
+.about-text { background: var(--light-color); border-radius: 6px; padding: 1.2rem 1.5rem; line-height: 1.9; font-size: 0.9rem; }
+
+/* --- イベントタブ --- */
+.event-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+.event-tab {
+  padding: 6px 16px;
+  border: 1px solid var(--bg-border-color);
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #666;
+}
+.event-tab.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+/* --- イベントリスト --- */
+.event-list { border-top: 1px solid var(--bg-border-color); }
+.event-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--bg-border-color);
+}
+.event-item.hidden { display: none; }
+.event-date {
+  min-width: 52px;
+  text-align: center;
+  background: var(--light-color);
+  border-radius: 6px;
+  padding: 6px 4px;
+  flex-shrink: 0;
+}
+.event-month { display: block; font-size: 0.65rem; color: #888; letter-spacing: 0.1em; }
+.event-day { display: block; font-size: 1.6rem; font-weight: bold; line-height: 1.1; color: var(--primary-color); }
+.event-title { font-size: 0.95rem; font-weight: bold; margin-bottom: 4px; }
+.event-meta { font-size: 0.8rem; color: #666; line-height: 1.8; }
+.event-meta i { margin-right: 3px; color: var(--accent-color); }
+.event-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: normal;
+  vertical-align: middle;
+}
+.tag-concert { background: #E6EEF8; color: #1a4a8a; }
+.tag-open { background: #EAF3DE; color: #3B6D11; }
+.tag-recruit { background: #FAEEDA; color: #854F0B; }
+
+/* --- カレンダー色分けカスタム --- */
+/* 練習日（store-weekly = 毎週土曜）*/
+.ui-tools-calender1-parts .store-weekly-parts {
+  background: #D6E8F8 !important;
+  color: #0C447C !important;
+  font-weight: bold;
+}
+/* イベント日（store-specific）*/
+.ui-tools-calender1-parts .store-specific-parts {
+  background: #D4EDDA !important;
+  color: #155724 !important;
+  font-weight: bold;
+}
+.calendar-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: #555;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border-radius: 3px;
+}
+.practice-dot { background: #D6E8F8; border: 1px solid #9CC5E8; }
+.event-dot { background: #D4EDDA; border: 1px solid #8BC34A; }
+
+/* --- お知らせ --- */
+.news2-parts dt { color: #888; }
+
+/* --- 団員募集 --- */
+.recruit-box { background: var(--light-color); border-radius: 6px; padding: 1.5rem; }
+.recruit-lead { font-size: 0.95rem; margin-bottom: 1.2rem; font-weight: bold; color: var(--primary-color); }
+.recruit-sub { font-size: 0.9rem; font-weight: bold; margin-bottom: 0.75rem; border-bottom: 1px solid var(--bg-border-color); padding-bottom: 0.4rem; }
+.recruit-list { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+.recruit-list li { padding: 6px 0; font-size: 0.9rem; border-bottom: 1px dashed var(--bg-border-color); }
+.recruit-list li i { color: var(--accent-color); margin-right: 8px; }
+.recruit-detail { background: #fff; border-radius: 4px; padding: 1rem 1.2rem; }
+.recruit-detail-item {
+  display: flex;
+  gap: 1rem;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--bg-border-color);
+  font-size: 0.88rem;
+  align-items: baseline;
+}
+.recruit-detail-item:last-child { border-bottom: none; }
+.recruit-detail-label {
+  min-width: 80px;
+  font-weight: bold;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* --- お問い合わせ --- */
+.contact-box { text-align: center; padding: 2rem 1rem; }
+.contact-box p { margin-bottom: 1.2rem; font-size: 0.9rem; }
+.contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+.contact-btn-line {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #06C755; color: #fff;
+  padding: 12px 28px; border-radius: 4px;
+  text-decoration: none; font-weight: bold; font-size: 1rem;
+}
+.contact-btn-instagram {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+  padding: 12px 28px; border-radius: 4px;
+  text-decoration: none; font-weight: bold; font-size: 1rem;
+}
+.contact-btn-line:hover, .contact-btn-instagram:hover { opacity: 0.85; }
+.contact-note { font-size: 0.78rem; color: #888; }
+
+/* --- サイドSNS --- */
+.side-sns-btns { display: flex; flex-direction: column; gap: 8px; }
+.side-line-btn, .side-instagram-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 4px;
+  text-decoration: none; font-size: 0.85rem; font-weight: bold;
+}
+.side-line-btn { background: #06C755; color: #fff; }
+.side-instagram-btn { background: linear-gradient(45deg, #f09433, #cc2366); color: #fff; }
+
+/* --- サイド次回イベント --- */
+.side-next-event { font-size: 0.85rem; line-height: 1.8; }
+.side-event-date { font-weight: bold; color: var(--accent-color); }
+.side-event-title { font-weight: bold; font-size: 0.95rem; color: var(--primary-color); }
+.side-event-place, .side-event-time { color: #666; font-size: 0.8rem; }
+.side-event-place i, .side-event-time i { color: var(--accent-color); margin-right: 4px; }
+
+/* --- フッター --- */
+footer {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 2rem 0 1rem;
+  margin-top: 2rem;
+}
+.footer-inner { max-width: 1000px; margin: 0 auto; padding: 0 5vw; text-align: center; }
+.footer-logo { font-size: 1rem; font-weight: bold; margin-bottom: 0.5rem; }
+.footer-logo span { display: block; font-size: 0.65rem; letter-spacing: 0.15em; opacity: 0.7; margin-top: 2px; }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+.footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.82rem; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem; }
+
+/* --- レスポンシブ調整 --- */
+@media (max-width: 800px) {
+  .hero-overlay { padding: 0 4vw; }
+  .hero-desc { display: none; }
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .hero-btns { flex-direction: column; }
+  .hero-btn-primary, .hero-btn-secondary { text-align: center; }
+  .calendar-legend { flex-direction: column; gap: 0.5rem; }
+  .recruit-detail-item { flex-direction: column; gap: 2px; }
+}
