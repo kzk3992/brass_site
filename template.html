@@ -37,10 +37,11 @@
 <div class="slide img1">
 <picture><source media="(max-width: 800px)" srcset="images/mainimg1.jpg"><img src="images/mainimg1.jpg" alt="{{ site_info.name }}"></picture>
 <div class="hero-overlay">
-  <div class="hero-logo-badge">{{ site_info.name }}</div>
   <div class="hero-catch">
-    {% if site_info.sub_name %}<p class="hero-sub">{{ site_info.sub_name }}</p>{% endif %}
-    <h2 class="hero-main">{{ site_info.catch_copy }}</h2>
+    <div class="hero-title-row">
+      <h2 class="hero-main">{{ site_info.name }}</h2>
+      {% if site_info.sub_name %}<span class="hero-name-sub">{{ site_info.sub_name }}</span>{% endif %}
+    </div>
     <p class="hero-desc">{{ site_info.description }}</p>
     <div class="hero-btns">
       <a href="#events" class="hero-btn-primary">演奏会情報</a>
@@ -118,10 +119,10 @@
 {% endfor %}
   </ul>
   <div class="recruit-detail">
-    <div class="recruit-detail-item"><span class="recruit-detail-label">練習日</span><span>{{ recruit.practice_day }}</span></div>
-    <div class="recruit-detail-item"><span class="recruit-detail-label">練習場所</span><span>{{ recruit.practice_place }}</span></div>
-    <div class="recruit-detail-item"><span class="recruit-detail-label">団費</span><span>{{ recruit.fee }}</span></div>
-    <div class="recruit-detail-item"><span class="recruit-detail-label">見学</span><span>{{ recruit.visit }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">練習日</span><span>{{ recruit.practice_day | autolink_instagram | safe }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">練習場所</span><span>{{ recruit.practice_place | autolink_instagram | safe }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">団費</span><span>{{ recruit.fee | autolink_instagram | safe }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">見学</span><span>{{ recruit.visit | autolink_instagram | safe }}</span></div>
   </div>
 </div>
 </section>

@@ -202,7 +202,22 @@ $(function(){
 
     // スマホ表示＆ハンバーガーが開いている状態なら閉じる
     if ($menubarHdr.is(':visible') && $menubarHdr.hasClass('ham')) {
+      var href = $(this).attr('href');
       closeMenu();
+      // メニューが閉じた後にスクロール（iOSタイミング対策）
+      if (href && href !== '#') {
+        setTimeout(function() {
+          var $target = $(href);
+          if ($target.length) {
+            var scrollTo = $target.offset().top;
+            if ('scrollBehavior' in document.documentElement.style) {
+              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+            } else {
+              $('html, body').animate({ scrollTop: scrollTo }, 500);
+            }
+          }
+        }, 50);
+      }
     }
   });
 
@@ -295,8 +310,12 @@ $(function() {
             }
         }
 
-        // アニメーションでスムーススクロール
-        $('html, body').animate({scrollTop: scrollTo}, 500);
+        // アニメーションでスムーススクロール（iOS Safari対応）
+        if ('scrollBehavior' in document.documentElement.style) {
+            window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+        } else {
+            $('html, body').animate({ scrollTop: scrollTo }, 500);
+        }
     }
 
 	//===========================================================

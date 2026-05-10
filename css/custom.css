@@ -68,7 +68,6 @@
   font-size: clamp(1.6rem, 4vw, 2.6rem);
   font-weight: bold;
   line-height: 1.3;
-  margin-bottom: 0.75rem;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 .hero-desc {
@@ -96,8 +95,22 @@
   text-decoration: none;
   font-size: 0.9rem;
 }
-.hero-btn-primary:hover { opacity: 0.85; }
-.hero-btn-secondary:hover { background: rgba(255,255,255,0.15); }
+.hero-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.hero-name-sub {
+  font-size: clamp(0.8rem, 2vw, 1.3rem);
+  opacity: 0.82;
+  color: #fff;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  align-self: flex-end;
+  padding-bottom: 0.2em;
+}
 
 /* --- セクションタイトル共通 --- */
 .section-title {
@@ -309,8 +322,14 @@ footer {
   .about-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 500px) {
-  .hero-btns { flex-direction: column; }
-  .hero-btn-primary, .hero-btn-secondary { text-align: center; }
+  /* ヒーローボタン: 横並びでコンパクトに */
+  .hero-btns { flex-direction: row; gap: 8px; }
+  .hero-btn-primary, .hero-btn-secondary { font-size: 0.78rem; padding: 8px 12px; text-align: center; flex: 1; min-width: 0; }
+  /* 概要カード: 小さく */
+  .about-card { padding: 0.65rem 0.4rem; }
+  .about-num { font-size: 1.15rem; }
+  .about-icon { font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .about-label { font-size: 0.68rem; }
   .calendar-legend { flex-direction: column; gap: 0.5rem; }
   .recruit-detail-item { flex-direction: column; gap: 2px; }
 }
