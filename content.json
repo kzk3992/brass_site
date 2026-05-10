@@ -29,7 +29,7 @@
     "about_label_2": "定期演奏会",
     "about_label_3": "練習日",
     "about_label_4": "主な練習場所",
-    "practice_time_note": ""
+    "practice_time_note": "不定期"
   },
   "news": [
     {
@@ -45,7 +45,22 @@
       "place": "宮田村民会館 大ホール",
       "time": "開場 13:00　開演 13:30",
       "note": "入場無料"
+    },
+    {
+      "date": "2026-05-03",
+      "title": "上伊那吹奏楽祭",
+      "tag": "",
+      "place": "伊那市民文化会館　大ホール",
+      "time": "",
+      "note": ""
     }
   ],
-  "practice_dates": []
+  "practice_dates": [
+    {
+      "date": "2026-06-06",
+      "time": "18:00～21:30",
+      "place": "きたっせ",
+      "note": ""
+    }
+  ]
 }
