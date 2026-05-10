@@ -91,7 +91,7 @@
 <h2 class="section-title">練習カレンダー<span>Calendar</span></h2>
 <div id="ui-tools-calender1-parts"></div>
 <div class="calendar-legend">
-  <span class="legend-item"><span class="legend-dot practice-dot"></span>練習日（毎週土曜）</span>
+  <span class="legend-item"><span class="legend-dot practice-dot"></span>練習日</span>
   <span class="legend-item"><span class="legend-dot event-dot"></span>イベント・演奏会</span>
 </div>
 </section>
@@ -204,6 +204,7 @@
 <script src="js/jquery.inview_set.js"></script>
 <script src="js/main.js"></script>
 <script>window._mgCalendarEvents = {{ calendar_events | tojson }};</script>
+<script>window._mgPracticeDates = {{ practice_dates | tojson }};</script></script>
 <script src="js/parts.js"></script>
 <script src="js/custom.js"></script>
 </body>

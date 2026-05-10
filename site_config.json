@@ -65,6 +65,16 @@
       ]
     },
     {
+      "id": "practice_dates",
+      "label": "練習日程",
+      "type": "list",
+      "item_fields": [
+        {"key": "date",  "label": "日付（YYYY-MM-DD）", "type": "date"},
+        {"key": "place", "label": "練習場所",           "type": "text"},
+        {"key": "note",  "label": "備考",               "type": "text"}
+      ]
+    },
+    {
       "id": "recruit",
       "label": "団員募集",
       "type": "fields",

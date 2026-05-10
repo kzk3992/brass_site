@@ -55,10 +55,21 @@ $(function() {
     },
   };
 
-  // 練習日（毎週土曜 = 6）
-  const storeClosedWeekDays = {
-    6: true, // 土曜日を練習日に設定
-  };
+  // 練習日（不定期 - window._mgPracticeDates で管理）
+  const storeClosedWeekDays = {};
+
+  // 練習日（特定日）
+  const practiceDates = (function() {
+    const _dates = window._mgPracticeDates || [];
+    const _result = {};
+    _dates.forEach(function(e) {
+      const yr = e.date.substring(0, 4);
+      const md = e.date.substring(5, 7) + "-" + e.date.substring(8, 10);
+      if (!_result[yr]) _result[yr] = {};
+      _result[yr][md] = true;
+    });
+    return _result;
+  })();
 
   // イベント・演奏会日（template.html のインラインscriptで window._mgCalendarEvents を設定）
   const storeClosedDates = (function() {
@@ -101,6 +112,7 @@ $(function() {
     const currentHolidays = holidays[year] || {};
     const currentStoreClosedDates = storeClosedDates[year] || {};
     const currentStoreOpenDates = storeOpenDates[year] || {};
+    const currentPracticeDates = practiceDates[year] || {};
     
     // 曜日の名称（日本語）
     const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -155,7 +167,10 @@ $(function() {
           const d = ("0" + day).slice(-2);
           const key = m + "-" + d;
           
-          if(currentStoreClosedDates[key]){
+          if(currentPracticeDates[key]){
+            // 練習日（不定期）
+            html += "<td class='store-weekly-parts'>" + day + "</td>";
+          } else if(currentStoreClosedDates[key]){
             html += "<td class='store-specific-parts'>" + day + "</td>";
           } else if(currentStoreOpenDates[key]){
             if(currentHolidays[key]){
@@ -168,7 +183,7 @@ $(function() {
               html += "<td>" + day + "</td>";
             }
           } else if(storeClosedWeekDays[j]){
-            // 毎週指定された定休日
+            // 毎週指定された定休日（現在は未使用）
             html += "<td class='store-weekly-parts'>" + day + "</td>";
           } else if(currentHolidays[key]){
             // 祝日
