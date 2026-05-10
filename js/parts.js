@@ -55,31 +55,33 @@ $(function() {
     },
   };
 
-  // 練習日（不定期 - window._mgPracticeDates で管理）
+  // 練習日（不定期 - window._mgPracticeDetails で管理）
   const storeClosedWeekDays = {};
 
   // 練習日（特定日）
   const practiceDates = (function() {
-    const _dates = window._mgPracticeDates || [];
+    const _dates = window._mgPracticeDetails || [];
     const _result = {};
     _dates.forEach(function(e) {
+      if (!e.date) return;
       const yr = e.date.substring(0, 4);
       const md = e.date.substring(5, 7) + "-" + e.date.substring(8, 10);
       if (!_result[yr]) _result[yr] = {};
-      _result[yr][md] = true;
+      _result[yr][md] = e;
     });
     return _result;
   })();
 
-  // イベント・演奏会日（template.html のインラインscriptで window._mgCalendarEvents を設定）
+  // イベント・演奏会日（template.html のインラインscriptで window._mgEventDetails を設定）
   const storeClosedDates = (function() {
-    const _dates = window._mgCalendarEvents || [];
+    const _dates = window._mgEventDetails || [];
     const _result = {};
     _dates.forEach(function(e) {
+      if (!e.date) return;
       const yr = e.date.substring(0, 4);
       const md = e.date.substring(5, 7) + "-" + e.date.substring(8, 10);
       if (!_result[yr]) _result[yr] = {};
-      _result[yr][md] = true;
+      _result[yr][md] = e;
     });
     return _result;
   })();
@@ -169,9 +171,9 @@ $(function() {
           
           if(currentPracticeDates[key]){
             // 練習日（不定期）
-            html += "<td class='store-weekly-parts'>" + day + "</td>";
+            html += "<td class='store-weekly-parts cal-clickable' data-type='practice' data-datekey='" + year + "-" + m + "-" + d + "'>" + day + "</td>";
           } else if(currentStoreClosedDates[key]){
-            html += "<td class='store-specific-parts'>" + day + "</td>";
+            html += "<td class='store-specific-parts cal-clickable' data-type='event' data-datekey='" + year + "-" + m + "-" + d + "'>" + day + "</td>";
           } else if(currentStoreOpenDates[key]){
             if(currentHolidays[key]){
               html += "<td class='holiday-parts'>" + day + "</td>";
@@ -229,4 +231,57 @@ $(function() {
   
   // 初期描画
   renderCalendar(currentYear, currentMonth);
+
+  // カレンダー詳細ポップアップモーダル
+  $('body').append(
+    '<div id="cal-detail-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9998;">' +
+    '<div style="background:#fff;max-width:340px;width:90%;margin:28vh auto;padding:24px 20px;border-radius:12px;position:relative;box-shadow:0 6px 30px rgba(0,0,0,0.25);">' +
+    '<button id="cal-modal-close-btn" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:24px;cursor:pointer;color:#999;line-height:1;">&times;</button>' +
+    '<div id="cal-detail-body" style="font-size:15px;line-height:1.8;"></div>' +
+    '</div></div>'
+  );
+  $('#cal-detail-modal').on('click', function(e) {
+    if ($(e.target).is('#cal-detail-modal')) $(this).hide();
+  });
+  $('#cal-modal-close-btn').on('click', function() { $('#cal-detail-modal').hide(); });
+
+  var tagMap = {concert: '演奏会', open: '一般公開', recruit: '参加募集'};
+  var tagColor = {concert: '#1a73e8', open: '#e65100', recruit: '#7b1fa2'};
+
+  $(document).on('click', '.cal-clickable', function() {
+    var type = $(this).data('type');
+    var datekey = $(this).data('datekey');
+    var yr = datekey.substring(0, 4);
+    var md = datekey.substring(5, 7) + '-' + datekey.substring(8, 10);
+    var bodyHtml = '';
+
+    if (type === 'event') {
+      var ev = (storeClosedDates[yr] || {})[md];
+      if (ev && typeof ev === 'object') {
+        bodyHtml += '<p style="margin:0 0 4px;font-size:12px;color:#999;">' + datekey + '</p>';
+        var tColor = tagColor[ev.tag] || '#555';
+        if (ev.tag && tagMap[ev.tag]) {
+          bodyHtml += '<span style="display:inline-block;background:' + tColor + ';color:#fff;font-size:11px;padding:2px 10px;border-radius:20px;margin-bottom:8px;">' + tagMap[ev.tag] + '</span>';
+        }
+        bodyHtml += '<p style="margin:0 0 10px;font-size:17px;font-weight:bold;">' + (ev.title || '') + '</p>';
+        if (ev.place) bodyHtml += '<p style="margin:3px 0;"><i class="fa-solid fa-location-dot"></i> ' + ev.place + '</p>';
+        if (ev.time)  bodyHtml += '<p style="margin:3px 0;"><i class="fa-regular fa-clock"></i> ' + ev.time + '</p>';
+        if (ev.note)  bodyHtml += '<p style="margin:6px 0 0;font-size:13px;color:#666;">' + ev.note + '</p>';
+      }
+    } else if (type === 'practice') {
+      var pr = (practiceDates[yr] || {})[md];
+      if (pr && typeof pr === 'object') {
+        bodyHtml += '<p style="margin:0 0 4px;font-size:12px;color:#999;">' + datekey + '</p>';
+        bodyHtml += '<span style="display:inline-block;background:#388e3c;color:#fff;font-size:11px;padding:2px 10px;border-radius:20px;margin-bottom:8px;">練習日</span>';
+        if (pr.time)  bodyHtml += '<p style="margin:3px 0;"><i class="fa-regular fa-clock"></i> ' + pr.time + '</p>';
+        if (pr.place) bodyHtml += '<p style="margin:3px 0;"><i class="fa-solid fa-location-dot"></i> ' + pr.place + '</p>';
+        if (pr.note)  bodyHtml += '<p style="margin:6px 0 0;font-size:13px;color:#666;">' + pr.note + '</p>';
+      }
+    }
+
+    if (bodyHtml) {
+      $('#cal-detail-body').html(bodyHtml);
+      $('#cal-detail-modal').fadeIn(150);
+    }
+  });
 });

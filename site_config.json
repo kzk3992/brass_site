@@ -42,10 +42,9 @@
       "label": "イベント情報",
       "type": "list",
       "item_fields": [
-        {"key": "month", "label": "月（英字3文字・例：JUN）", "type": "text"},
-        {"key": "day",   "label": "日（例：8）",              "type": "text"},
-        {"key": "title", "label": "タイトル",                 "type": "text"},
-        {"key": "tag",   "label": "タグ",                     "type": "select",
+        {"key": "date",  "label": "日付",   "type": "date"},
+        {"key": "title", "label": "タイトル", "type": "text"},
+        {"key": "tag",   "label": "タグ",   "type": "select",
          "options": [
            {"value": "concert", "label": "演奏会"},
            {"value": "open",    "label": "一般公開"},
@@ -57,21 +56,14 @@
       ]
     },
     {
-      "id": "calendar_events",
-      "label": "カレンダー（イベント日）",
-      "type": "list",
-      "item_fields": [
-        {"key": "date", "label": "日付（YYYY-MM-DD）", "type": "date"}
-      ]
-    },
-    {
       "id": "practice_dates",
       "label": "練習日程",
       "type": "list",
       "item_fields": [
-        {"key": "date",  "label": "日付（YYYY-MM-DD）", "type": "date"},
-        {"key": "place", "label": "練習場所",           "type": "text"},
-        {"key": "note",  "label": "備考",               "type": "text"}
+        {"key": "date",  "label": "日付",     "type": "date"},
+        {"key": "time",  "label": "練習時間", "type": "text"},
+        {"key": "place", "label": "練習場所", "type": "text"},
+        {"key": "note",  "label": "備考",     "type": "text"}
       ]
     },
     {
@@ -88,14 +80,16 @@
       ]
     },
     {
-      "id": "next_event",
-      "label": "次回イベント（サイドバー）",
+      "id": "site_meta",
+      "label": "固定テキスト編集",
       "type": "fields",
       "fields": [
-        {"key": "date",  "label": "日付テキスト（例：2026年6月8日（日））","type": "text"},
-        {"key": "title", "label": "イベント名",                          "type": "text"},
-        {"key": "place", "label": "場所",                               "type": "text"},
-        {"key": "time",  "label": "時間・入場情報",                      "type": "text"}
+        {"key": "location",      "label": "所在地（フッター）",           "type": "text"},
+        {"key": "about_label_1", "label": "概要カード①ラベル",           "type": "text"},
+        {"key": "about_label_2", "label": "概要カード②ラベル",           "type": "text"},
+        {"key": "about_label_3", "label": "概要カード③ラベル",           "type": "text"},
+        {"key": "about_label_4", "label": "概要カード④ラベル",           "type": "text"},
+        {"key": "practice_time_note", "label": "練習時間帯（概要カード内）", "type": "text"}
       ]
     },
     {

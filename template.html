@@ -58,10 +58,10 @@
 <section id="about">
 <h2 class="section-title">活動概要<span>About</span></h2>
 <div class="about-grid">
-  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-users"></i></div><div class="about-num">{{ about.member_count }}</div><div class="about-label">団員数（募集中）</div></div>
-  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-music"></i></div><div class="about-num">{{ about.concert_count }}</div><div class="about-label">定期演奏会（春・秋）</div></div>
-  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-calendar-days"></i></div><div class="about-num">{{ about.practice_day }}</div><div class="about-label">練習日（午後2時〜）</div></div>
-  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-location-dot"></i></div><div class="about-num">{{ about.practice_place }}</div><div class="about-label">主な練習場所</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-users"></i></div><div class="about-num">{{ about.member_count }}</div><div class="about-label">{{ site_meta.about_label_1 }}</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-music"></i></div><div class="about-num">{{ about.concert_count }}</div><div class="about-label">{{ site_meta.about_label_2 }}</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-calendar-days"></i></div><div class="about-num">{{ about.practice_day }}</div><div class="about-label">{{ site_meta.about_label_3 }}（{{ site_meta.practice_time_note }}）</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-location-dot"></i></div><div class="about-num">{{ about.practice_place }}</div><div class="about-label">{{ site_meta.about_label_4 }}</div></div>
 </div>
 <div class="about-text">
   <p>{{ about.about_text }}</p>
@@ -80,7 +80,7 @@
 {% set tag_labels = {"concert": "演奏会", "open": "一般公開", "recruit": "参加募集"} %}
 {% for event in events %}
   <div class="event-item" data-type="{{ event.tag }}">
-    <div class="event-date"><span class="event-month">{{ event.month }}</span><span class="event-day">{{ event.day }}</span></div>
+    <div class="event-date"><span class="event-month">{{ event.date | month_abbr }}</span><span class="event-day">{{ event.date | day_num }}</span></div>
     <div class="event-info"><div class="event-title">{{ event.title }}<span class="event-tag tag-{{ event.tag }}">{{ tag_labels[event.tag] }}</span></div><div class="event-meta"><i class="fa-solid fa-location-dot"></i> {{ event.place }}{% if event.time %}　<i class="fa-regular fa-clock"></i> {{ event.time }}{% endif %}{% if event.note %}　{{ event.note }}{% endif %}</div></div>
   </div>
 {% endfor %}
@@ -192,7 +192,7 @@
     <a href="#recruit">団員募集</a>
     <a href="#contact">お問い合わせ</a>
   </div>
-  <p class="footer-copy">© {{ site_info.name }} · 長野県伊那市</p>
+  <p class="footer-copy">© {{ site_info.name }} · {{ site_meta.location }}</p>
 </div>
 </footer>
 
@@ -203,8 +203,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
 <script src="js/jquery.inview_set.js"></script>
 <script src="js/main.js"></script>
-<script>window._mgCalendarEvents = {{ calendar_events | tojson }};</script>
-<script>window._mgPracticeDates = {{ practice_dates | tojson }};</script></script>
+<script>window._mgEventDetails = {{ events | tojson }};</script>
+<script>window._mgPracticeDetails = {{ practice_dates | tojson }};</script>
 <script src="js/parts.js"></script>
 <script src="js/custom.js"></script>
 </body>
