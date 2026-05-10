@@ -196,15 +196,18 @@ $(function(){
   //-------------------------------------------------
   // アンカーリンク(#)のクリックイベント
   //-------------------------------------------------
-  $menubar.find('a[href^=”#”]').on('click', function() {
+  $menubar.find('a[href^="#"]').on('click', function(e) {
     // ドロップダウンメニューの親(a.ddmenu)のリンクはメニューを閉じない
     if ($(this).hasClass('ddmenu')) return;
 
     // スマホ表示＆ハンバーガーが開いている状態なら閉じる
     if ($menubarHdr.is(':visible') && $menubarHdr.hasClass('ham')) {
       var href = $(this).attr('href');
+      // グローバルのsmoothScrollハンドラーと競合しないよう伝播を止める
+      e.preventDefault();
+      e.stopImmediatePropagation();
       closeMenu();
-      // メニューが閉じた後にスクロール（iOSタイミング対策）
+      // メニューアニメーション(0.2s)完了後にスクロール（iOSタイミング対策）
       if (href && href !== '#') {
         setTimeout(function() {
           var $target = $(href);
@@ -216,7 +219,7 @@ $(function(){
               $('html, body').animate({ scrollTop: scrollTo }, 500);
             }
           }
-        }, 50);
+        }, 300);
       }
     }
   });
