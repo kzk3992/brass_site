@@ -60,9 +60,9 @@ $(function() {
     6: true, // 土曜日を練習日に設定
   };
 
-  // イベント・演奏会日（site-manager が calendar_events から自動生成）
+  // イベント・演奏会日（template.html のインラインscriptで window._mgCalendarEvents を設定）
   const storeClosedDates = (function() {
-    const _dates = {{ calendar_events | tojson }};
+    const _dates = window._mgCalendarEvents || [];
     const _result = {};
     _dates.forEach(function(e) {
       const yr = e.date.substring(0, 4);

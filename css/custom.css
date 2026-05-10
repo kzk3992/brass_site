@@ -52,10 +52,10 @@
   top: 1.2rem;
   left: 1.5rem;
   color: #fff;
-  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
   font-weight: bold;
   letter-spacing: 0.05em;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
   opacity: 0.9;
 }
 .hero-sub {

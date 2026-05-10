@@ -2,7 +2,6 @@
   "site_name": "Musical Gifts",
   "git_remote": "https://github.com/kzk3992/brass_site.git",
   "git_branch": "main",
-  "extra_templates": ["js/parts.js"],
   "sections": [
     {
       "id": "site_info",
