@@ -13,7 +13,6 @@
         {"key": "sub_name",       "label": "サブタイトル（英語）",   "type": "text"},
         {"key": "catch_copy",     "label": "キャッチコピー",         "type": "text"},
         {"key": "description",    "label": "団体説明文",            "type": "textarea"},
-        {"key": "line_url",       "label": "LINE URL",              "type": "url"},
         {"key": "instagram_url",  "label": "Instagram URL",         "type": "url"},
         {"key": "instagram_embed","label": "Instagram埋め込みコード","type": "textarea"}
       ]

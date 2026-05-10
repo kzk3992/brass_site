@@ -15,7 +15,7 @@
 <h1 id="logo"><a href="index.html"><span id="logo-text">{{ site_info.name }}{% if site_info.sub_name %}<span>{{ site_info.sub_name }}</span>{% endif %}</span></a></h1>
 <div>
 <div id="header-box">
-<a href="{{ site_info.line_url }}" class="header-contact-btn"><i class="fa-brands fa-line"></i> LINEで問い合わせ</a>
+<a href="{{ site_info.instagram_url }}" class="header-contact-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagramを見る</a>
 </div>
 <div id="f-size"><p>文字サイズ</p><ul><li id="f-small"></li><li id="f-large"></li></ul></div>
 </div>
@@ -30,13 +30,14 @@
 <li><a href="#recruit">団員募集<span>Recruit</span></a></li>
 <li><a href="#contact">お問い合わせ<span>Contact</span></a></li>
 </ul></nav>
-<div class="sh">練習見学はいつでも歓迎しています。まずはLINEからお気軽にどうぞ。</div>
+<div class="sh">練習見学はいつでも歓迎しています。お気軽にどうぞ。</div>
 </div>
 
 <div class="mainimg">
 <div class="slide img1">
 <picture><source media="(max-width: 800px)" srcset="images/mainimg1.jpg"><img src="images/mainimg1.jpg" alt="{{ site_info.name }}"></picture>
 <div class="hero-overlay">
+  <div class="hero-logo-badge">{{ site_info.name }}</div>
   <div class="hero-catch">
     {% if site_info.sub_name %}<p class="hero-sub">{{ site_info.sub_name }}</p>{% endif %}
     <h2 class="hero-main">{{ site_info.catch_copy }}</h2>
@@ -137,10 +138,9 @@
 <section id="contact">
 <h2 class="section-title">お問い合わせ<span>Contact</span></h2>
 <div class="contact-box">
-  <p>演奏依頼・見学・その他お問い合わせはLINEまたはInstagramからお気軽にどうぞ。</p>
+  <p>演奏依頼・見学・その他お問い合わせはInstagramからお気軽にどうぞ。</p>
   <div class="contact-btns">
-    <a href="{{ site_info.line_url }}" class="contact-btn-line"><i class="fa-brands fa-line"></i> LINEで問い合わせる</a>
-    <a href="{{ site_info.instagram_url }}" class="contact-btn-instagram"><i class="fa-brands fa-instagram"></i> Instagramを見る</a>
+    <a href="{{ site_info.instagram_url }}" class="contact-btn-instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagramを見る</a>
   </div>
   <p class="contact-note">※演奏依頼については、内容・時期によりお受けできない場合があります。まずはお気軽にご相談ください。</p>
 </div>
@@ -164,8 +164,7 @@
 <div class="box1-parts side-sns">
 <h3>SNS</h3>
 <div class="side-sns-btns">
-  <a href="{{ site_info.line_url }}" class="side-line-btn"><i class="fa-brands fa-line"></i> LINE</a>
-  <a href="{{ site_info.instagram_url }}" class="side-instagram-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+  <a href="{{ site_info.instagram_url }}" class="side-instagram-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram</a>
 </div>
 </div>
 
