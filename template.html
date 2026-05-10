@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>{{ site_info.name }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ site_info.description }}">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="home">
+<div id="container">
+
+<header>
+<h1 id="logo"><a href="index.html"><span id="logo-text">{{ site_info.name }}{% if site_info.sub_name %}<span>{{ site_info.sub_name }}</span>{% endif %}</span></a></h1>
+<div>
+<div id="header-box">
+<a href="{{ site_info.line_url }}" class="header-contact-btn"><i class="fa-brands fa-line"></i> LINEで問い合わせ</a>
+</div>
+<div id="f-size"><p>文字サイズ</p><ul><li id="f-small"></li><li id="f-large"></li></ul></div>
+</div>
+</header>
+
+<div id="menubar">
+<nav><ul>
+<li><a href="index.html">ホーム<span>Home</span></a></li>
+<li><a href="#about">団体概要<span>About</span></a></li>
+<li><a href="#events">イベント<span>Events</span></a></li>
+<li><a href="#calendar">カレンダー<span>Calendar</span></a></li>
+<li><a href="#recruit">団員募集<span>Recruit</span></a></li>
+<li><a href="#contact">お問い合わせ<span>Contact</span></a></li>
+</ul></nav>
+<div class="sh">練習見学はいつでも歓迎しています。まずはLINEからお気軽にどうぞ。</div>
+</div>
+
+<div class="mainimg">
+<div class="slide img1">
+<picture><source media="(max-width: 800px)" srcset="images/mainimg1.jpg"><img src="images/mainimg1.jpg" alt="{{ site_info.name }}"></picture>
+<div class="hero-overlay">
+  <div class="hero-catch">
+    {% if site_info.sub_name %}<p class="hero-sub">{{ site_info.sub_name }}</p>{% endif %}
+    <h2 class="hero-main">{{ site_info.catch_copy }}</h2>
+    <p class="hero-desc">{{ site_info.description }}</p>
+    <div class="hero-btns">
+      <a href="#events" class="hero-btn-primary">演奏会情報</a>
+      <a href="#recruit" class="hero-btn-secondary">団員募集中</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="contents">
+<div class="contents-layout">
+<main class="main">
+
+<section id="about">
+<h2 class="section-title">活動概要<span>About</span></h2>
+<div class="about-grid">
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-users"></i></div><div class="about-num">{{ about.member_count }}</div><div class="about-label">団員数（募集中）</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-music"></i></div><div class="about-num">{{ about.concert_count }}</div><div class="about-label">定期演奏会（春・秋）</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-calendar-days"></i></div><div class="about-num">{{ about.practice_day }}</div><div class="about-label">練習日（午後2時〜）</div></div>
+  <div class="about-card"><div class="about-icon"><i class="fa-solid fa-location-dot"></i></div><div class="about-num">{{ about.practice_place }}</div><div class="about-label">主な練習場所</div></div>
+</div>
+<div class="about-text">
+  <p>{{ about.about_text }}</p>
+</div>
+</section>
+
+<section id="events">
+<h2 class="section-title">イベント・演奏会情報<span>Events</span></h2>
+<div class="event-tabs">
+  <button class="event-tab active" data-filter="all">すべて</button>
+  <button class="event-tab" data-filter="concert">演奏会</button>
+  <button class="event-tab" data-filter="open">一般公開</button>
+  <button class="event-tab" data-filter="recruit">参加募集</button>
+</div>
+<div class="event-list">
+{% set tag_labels = {"concert": "演奏会", "open": "一般公開", "recruit": "参加募集"} %}
+{% for event in events %}
+  <div class="event-item" data-type="{{ event.tag }}">
+    <div class="event-date"><span class="event-month">{{ event.month }}</span><span class="event-day">{{ event.day }}</span></div>
+    <div class="event-info"><div class="event-title">{{ event.title }}<span class="event-tag tag-{{ event.tag }}">{{ tag_labels[event.tag] }}</span></div><div class="event-meta"><i class="fa-solid fa-location-dot"></i> {{ event.place }}{% if event.time %}　<i class="fa-regular fa-clock"></i> {{ event.time }}{% endif %}{% if event.note %}　{{ event.note }}{% endif %}</div></div>
+  </div>
+{% endfor %}
+</div>
+</section>
+
+<section id="calendar">
+<h2 class="section-title">練習カレンダー<span>Calendar</span></h2>
+<div id="ui-tools-calender1-parts"></div>
+<div class="calendar-legend">
+  <span class="legend-item"><span class="legend-dot practice-dot"></span>練習日（毎週土曜）</span>
+  <span class="legend-item"><span class="legend-dot event-dot"></span>イベント・演奏会</span>
+</div>
+</section>
+
+<section id="news">
+<h2 class="section-title">お知らせ<span>News</span></h2>
+<dl class="news2-parts">
+{% for item in news %}
+<dt>{{ item.date }}</dt><dd>{{ item.text }}</dd>
+{% endfor %}
+</dl>
+</section>
+
+<section id="recruit">
+<h2 class="section-title">団員募集<span>Recruit</span></h2>
+<div class="recruit-box">
+  <p class="recruit-lead">{{ recruit.lead }}</p>
+  <h3 class="recruit-sub">募集パート</h3>
+  <ul class="recruit-list">
+{% for part in recruit.parts.split('\n') %}
+{% if part.strip() %}
+    <li><i class="fa-solid fa-music"></i> {{ part }}</li>
+{% endif %}
+{% endfor %}
+  </ul>
+  <div class="recruit-detail">
+    <div class="recruit-detail-item"><span class="recruit-detail-label">練習日</span><span>{{ recruit.practice_day }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">練習場所</span><span>{{ recruit.practice_place }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">団費</span><span>{{ recruit.fee }}</span></div>
+    <div class="recruit-detail-item"><span class="recruit-detail-label">見学</span><span>{{ recruit.visit }}</span></div>
+  </div>
+</div>
+</section>
+
+{% if site_info.instagram_embed %}
+<section id="instagram">
+<h2 class="section-title">Instagram<span>SNS</span></h2>
+<div class="instagram-embed">
+  {{ site_info.instagram_embed | safe }}
+</div>
+</section>
+{% endif %}
+
+<section id="contact">
+<h2 class="section-title">お問い合わせ<span>Contact</span></h2>
+<div class="contact-box">
+  <p>演奏依頼・見学・その他お問い合わせはLINEまたはInstagramからお気軽にどうぞ。</p>
+  <div class="contact-btns">
+    <a href="{{ site_info.line_url }}" class="contact-btn-line"><i class="fa-brands fa-line"></i> LINEで問い合わせる</a>
+    <a href="{{ site_info.instagram_url }}" class="contact-btn-instagram"><i class="fa-brands fa-instagram"></i> Instagramを見る</a>
+  </div>
+  <p class="contact-note">※演奏依頼については、内容・時期によりお受けできない場合があります。まずはお気軽にご相談ください。</p>
+</div>
+</section>
+
+</main>
+
+<div class="side">
+<div class="box1-parts">
+<h3>MENU</h3>
+<nav><ul class="sidemenu-parts">
+<li><a href="#about">団体概要</a></li>
+<li><a href="#events">イベント情報</a></li>
+<li><a href="#calendar">練習カレンダー</a></li>
+<li><a href="#news">お知らせ</a></li>
+<li><a href="#recruit">団員募集</a></li>
+<li><a href="#contact">お問い合わせ</a></li>
+</ul></nav>
+</div>
+
+<div class="box1-parts side-sns">
+<h3>SNS</h3>
+<div class="side-sns-btns">
+  <a href="{{ site_info.line_url }}" class="side-line-btn"><i class="fa-brands fa-line"></i> LINE</a>
+  <a href="{{ site_info.instagram_url }}" class="side-instagram-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+</div>
+</div>
+
+<div class="box1-parts">
+<h3>NEXT EVENT</h3>
+<div class="side-next-event">
+  <p class="side-event-date">{{ next_event.date }}</p>
+  <p class="side-event-title">{{ next_event.title }}</p>
+  <p class="side-event-place"><i class="fa-solid fa-location-dot"></i> {{ next_event.place }}</p>
+  <p class="side-event-time"><i class="fa-regular fa-clock"></i> {{ next_event.time }}</p>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<footer>
+<div class="footer-inner">
+  <div class="footer-logo">{{ site_info.name }}{% if site_info.sub_name %}<span>{{ site_info.sub_name }}</span>{% endif %}</div>
+  <div class="footer-links">
+    <a href="#about">団体概要</a>
+    <a href="#events">イベント</a>
+    <a href="#calendar">カレンダー</a>
+    <a href="#recruit">団員募集</a>
+    <a href="#contact">お問い合わせ</a>
+  </div>
+  <p class="footer-copy">© {{ site_info.name }} · 長野県伊那市</p>
+</div>
+</footer>
+
+<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+<div id="menubar_hdr"><span></span><span></span><span></span></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="js/jquery.inview_set.js"></script>
+<script src="js/main.js"></script>
+<script src="js/parts.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>

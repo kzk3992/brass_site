@@ -62,7 +62,7 @@ $(function() {
 
   // イベント・演奏会日（site-manager が calendar_events から自動生成）
   const storeClosedDates = (function() {
-    const _dates = {{ calendar_events | tojson }};
+    const _dates = [{"date": "2026-06-08"}, {"date": "2026-06-22"}, {"date": "2026-07-05"}, {"date": "2026-08-17"}];
     const _result = {};
     _dates.forEach(function(e) {
       const yr = e.date.substring(0, 4);

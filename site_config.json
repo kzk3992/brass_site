@@ -1,0 +1,100 @@
+{
+  "site_name": "Musical Gifts",
+  "git_remote": "https://github.com/kzk3992/brass_site.git",
+  "git_branch": "main",
+  "extra_templates": ["js/parts.js"],
+  "sections": [
+    {
+      "id": "site_info",
+      "label": "基本情報",
+      "type": "fields",
+      "fields": [
+        {"key": "name",           "label": "団体名",               "type": "text"},
+        {"key": "sub_name",       "label": "サブタイトル（英語）",   "type": "text"},
+        {"key": "catch_copy",     "label": "キャッチコピー",         "type": "text"},
+        {"key": "description",    "label": "団体説明文",            "type": "textarea"},
+        {"key": "line_url",       "label": "LINE URL",              "type": "url"},
+        {"key": "instagram_url",  "label": "Instagram URL",         "type": "url"},
+        {"key": "instagram_embed","label": "Instagram埋め込みコード","type": "textarea"}
+      ]
+    },
+    {
+      "id": "about",
+      "label": "活動概要",
+      "type": "fields",
+      "fields": [
+        {"key": "member_count",  "label": "団員数",         "type": "text"},
+        {"key": "concert_count", "label": "年間演奏会数",   "type": "text"},
+        {"key": "practice_day",  "label": "練習日",         "type": "text"},
+        {"key": "practice_place","label": "練習場所（短）", "type": "text"},
+        {"key": "about_text",    "label": "団体説明文（本文）","type": "textarea"}
+      ]
+    },
+    {
+      "id": "news",
+      "label": "お知らせ",
+      "type": "list",
+      "item_fields": [
+        {"key": "date", "label": "日付",  "type": "date"},
+        {"key": "text", "label": "内容",  "type": "text"}
+      ]
+    },
+    {
+      "id": "events",
+      "label": "イベント情報",
+      "type": "list",
+      "item_fields": [
+        {"key": "month", "label": "月（英字3文字・例：JUN）", "type": "text"},
+        {"key": "day",   "label": "日（例：8）",              "type": "text"},
+        {"key": "title", "label": "タイトル",                 "type": "text"},
+        {"key": "tag",   "label": "タグ",                     "type": "select",
+         "options": [
+           {"value": "concert", "label": "演奏会"},
+           {"value": "open",    "label": "一般公開"},
+           {"value": "recruit", "label": "参加募集"}
+         ]},
+        {"key": "place", "label": "場所",   "type": "text"},
+        {"key": "time",  "label": "時間",   "type": "text"},
+        {"key": "note",  "label": "備考",   "type": "text"}
+      ]
+    },
+    {
+      "id": "calendar_events",
+      "label": "カレンダー（イベント日）",
+      "type": "list",
+      "item_fields": [
+        {"key": "date", "label": "日付（YYYY-MM-DD）", "type": "date"}
+      ]
+    },
+    {
+      "id": "recruit",
+      "label": "団員募集",
+      "type": "fields",
+      "fields": [
+        {"key": "lead",           "label": "リード文",                    "type": "textarea"},
+        {"key": "parts",          "label": "募集パート（1行1パート）",     "type": "textarea"},
+        {"key": "practice_day",   "label": "練習日",                     "type": "text"},
+        {"key": "practice_place", "label": "練習場所",                   "type": "text"},
+        {"key": "fee",            "label": "団費",                       "type": "text"},
+        {"key": "visit",          "label": "見学について",                "type": "text"}
+      ]
+    },
+    {
+      "id": "next_event",
+      "label": "次回イベント（サイドバー）",
+      "type": "fields",
+      "fields": [
+        {"key": "date",  "label": "日付テキスト（例：2026年6月8日（日））","type": "text"},
+        {"key": "title", "label": "イベント名",                          "type": "text"},
+        {"key": "place", "label": "場所",                               "type": "text"},
+        {"key": "time",  "label": "時間・入場情報",                      "type": "text"}
+      ]
+    },
+    {
+      "id": "hero_image",
+      "label": "メイン画像",
+      "type": "image",
+      "target_path": "images/mainimg1.jpg"
+    }
+  ]
+}
